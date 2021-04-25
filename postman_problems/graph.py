@@ -225,10 +225,10 @@ def create_eulerian_path(graph_augmented, graph_original, start_node=None):
         networkx graph (`graph_original`) augmented with edges directly between the odd nodes
     """
 
-    euler_circuit = list(nx.eulerian_path(graph_augmented, source=start_node, keys=True))
-    assert len(graph_augmented.edges()) == len(euler_circuit), 'graph and euler_circuit do not have equal number of edges.'
+    euler_path = list(nx.eulerian_path(graph_augmented, source=start_node, keys=True))
+    assert len(graph_augmented.edges()) == len(euler_path), 'graph and euler_circuit do not have equal number of edges.'
 
-    for edge in euler_circuit:
+    for edge in euler_path:
         aug_path = nx.shortest_path(graph_original, edge[0], edge[1], weight='distance')
         edge_attr = graph_augmented[edge[0]][edge[1]][edge[2]]
         if not edge_attr.get('augmented'):
